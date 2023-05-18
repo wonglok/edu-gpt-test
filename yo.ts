@@ -61,6 +61,8 @@ const main = async () => {
   // Open the connection with the model
   await gpt4all.open();
 
+  console.log("open");
+
   let all = "";
   // @ts-ignore
   gpt4all.bot.stdout.on("data", (buffer) => {
@@ -77,11 +79,15 @@ const main = async () => {
   console.log(`Prompt: ${prompt}`);
   console.log(`Response: ${response}`);
 
+  console.log("done 1");
+
   const prompt2 =
     "Explain to a five year old why AI is nothing to be afraid of.";
   const response2 = await gpt4all.prompt(prompt2);
   console.log(`Prompt: ${prompt2}`);
   console.log(`Response: ${response2}`);
+
+  console.log("done 2");
 
   // Close the connection when you're done
   gpt4all.close();
