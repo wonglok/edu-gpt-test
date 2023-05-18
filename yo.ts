@@ -56,6 +56,8 @@ const main = async () => {
   // Initialize and download missing files
   await gpt4all.init();
 
+  console.log("123");
+
   // Open the connection with the model
   await gpt4all.open();
 
