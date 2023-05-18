@@ -1,14 +1,66 @@
 import { GPT4All } from "gpt4all";
+import * as path from "path";
+import * as os from "os";
+import { promisify } from "util";
+import { exec, spawn } from "child_process";
 
 const main = async () => {
   // Instantiate GPT4All with default or custom settings
-  const gpt4all = new GPT4All("gpt4all-lora-quantized", true); // Default is 'gpt4all-lora-quantized' model
+  const gpt4all = new GPT4All("gpt4all-lora-quantized", false); // Default is 'gpt4all-lora-quantized' model
+
+  const platform = os.platform();
+
+  if (platform === "darwin") {
+    const { stdout } = await promisify(exec)("uname -m");
+    if (stdout.trim() === "arm64") {
+      // @ts-ignore
+      gpt4all.executablePath = path.join(
+        __dirname,
+        "./gpt4all/gpt4all-lora-quantized-OSX-m1"
+      );
+    } else {
+      // @ts-ignore
+      gpt4all.executablePath = path.join(
+        __dirname,
+        "./gpt4all/gpt4all-lora-quantized-OSX-intel"
+      );
+    }
+  } else if (platform === "linux") {
+    //linux-x86
+    // @ts-ignore
+    gpt4all.executablePath = path.join(
+      __dirname,
+      "./gpt4all/gpt4all-lora-quantized-linux-x86"
+    );
+  } else if (platform === "win32") {
+    // @ts-ignore
+    gpt4all.executablePath = path.join(
+      __dirname,
+      "./gpt4all/gpt4all-lora-quantized-win64.exe"
+    );
+  }
+
+  // @ts-ignore
+  gpt4all.modelPath = path.join(
+    __dirname,
+    "./model/gpt4all-lora-quantized.bin"
+  );
 
   // Initialize and download missing files
   await gpt4all.init();
 
   // Open the connection with the model
   await gpt4all.open();
+
+  let all = "";
+  // @ts-ignore
+  gpt4all.bot.stdout.on("data", (buffer) => {
+    let string = buffer.toString();
+
+    all += string;
+    console.log(all);
+  });
+
   // Generate a response using a prompt
   const prompt =
     "Tell me about how Open Access to AI is going to help humanity.";

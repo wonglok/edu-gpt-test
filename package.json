@@ -1,12 +1,14 @@
 {
   "dependencies": {
-    "gpt4all": "^1.0.0"
+    "gpt4all": "^1.0.0",
+    "progress": "^2.0.3"
   },
   "scripts": {
-    "dev": "ts-node yo.ts"
+    "dev": "ts-node yo.ts  --project ."
   },
   "devDependencies": {
     "@types/node": "^20.2.0",
+    "@types/progress": "^2.0.5",
     "axios": "^1.4.0",
     "ts-node": "^10.9.1",
     "tslib": "^2.5.1",

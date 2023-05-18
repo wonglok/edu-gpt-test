@@ -52,6 +52,13 @@
   resolved "https://registry.npmjs.org/@types/node/-/node-20.2.0.tgz"
   integrity sha512-3iD2jaCCziTx04uudpJKwe39QxXgSUnpxXSvRQjRvHPxFQfmfP4NXIm/NURVeNlTCc+ru4WqjYGTmpXrW9uMlw==
 
+"@types/progress@^2.0.5":
+  version "2.0.5"
+  resolved "https://registry.npmjs.org/@types/progress/-/progress-2.0.5.tgz"
+  integrity sha512-ZYYVc/kSMkhH9W/4dNK/sLNra3cnkfT2nJyOAIDY+C2u6w72wa0s1aXAezVtbTsnN8HID1uhXCrLwDE2ZXpplg==
+  dependencies:
+    "@types/node" "*"
+
 acorn-walk@^8.1.1:
   version "8.2.0"
   resolved "https://registry.npmjs.org/acorn-walk/-/acorn-walk-8.2.0.tgz"
