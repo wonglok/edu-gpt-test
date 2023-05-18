@@ -3,6 +3,7 @@ import * as path from "path";
 import * as os from "os";
 import { promisify } from "util";
 import { exec, spawn } from "child_process";
+import * as fs from "fs";
 
 const main = async () => {
   // Instantiate GPT4All with default or custom settings
@@ -39,6 +40,13 @@ const main = async () => {
       "./gpt4all/gpt4all-lora-quantized-win64.exe"
     );
   }
+
+  // @ts-ignore
+  await fs.chmod(gpt4all.executablePath, 0o755, (err) => {
+    if (err) {
+      throw err;
+    }
+  });
 
   // @ts-ignore
   gpt4all.modelPath = path.join(
