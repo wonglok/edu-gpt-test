@@ -1,0 +1,14 @@
+{
+  "dependencies": {
+    "gpt4all": "^1.0.0"
+  },
+  "scripts": {
+    "dev": "ts-node yo.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^20.2.0",
+    "ts-node": "^10.9.1",
+    "tslib": "^2.5.1",
+    "typescript": "^5.0.4"
+  }
+}
