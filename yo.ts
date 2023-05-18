@@ -58,8 +58,12 @@ const main = async () => {
 
   console.log("123");
 
-  // Open the connection with the model
-  await gpt4all.open();
+  try {
+    // Open the connection with the model
+    await gpt4all.open();
+  } catch (e) {
+    console.log(e);
+  }
 
   console.log("open");
 
@@ -92,5 +96,4 @@ const main = async () => {
   // Close the connection when you're done
   gpt4all.close();
 };
-
 main().catch(console.error);
