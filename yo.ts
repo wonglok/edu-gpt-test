@@ -27,7 +27,6 @@ const main = async () => {
       );
     }
   } else if (platform === "linux") {
-    //linux-x86
     // @ts-ignore
     gpt4all.executablePath = path.join(
       __dirname,
